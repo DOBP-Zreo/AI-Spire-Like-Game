@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/enemy_resource.gd" id="1_enemy_script"]
+
+[resource]
+script = ExtResource("1_enemy_script")
+id = "slime_king"
+enemy_name = "黏胶之主"
+type = "boss"
+max_hp = 200
+starting_block = 0
+intent_pattern_type = "fixed_cycle"
+intent_pattern = [{"action": "attack", "value": 14, "type": "attack"}, {"action": "buff", "value": 0, "type": "buff", "buff_type": "strength", "buff_amount": 3}, {"action": "attack", "value": 17, "type": "attack"}, {"action": "block", "value": 15, "type": "block"}]
+conditional_trigger_hp_percent = 0.5
+conditional_pattern = [{"action": "attack", "value": 20, "type": "attack"}, {"action": "attack", "value": 20, "type": "attack"}, {"action": "block", "value": 12, "type": "block"}]
+gold_reward_min = 40
+gold_reward_max = 60

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_resource.gd" id="1_card_script"]
+
+[resource]
+script = ExtResource("1_card_script")
+id = "iron_wall"
+card_name = "坚壁"
+type = "skill"
+cost = 2
+description = "获得 {block} 点格挡"
+rarity = "common"
+keywords = []
+base_damage = 0
+base_block = 10
+base_draw = 0
+special_effect = ""
+upgraded = false
+upgraded_damage = 0
+upgraded_block = 14
+upgraded_draw = 0
+upgraded_cost = 2

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RelicResource" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/relics/relic_resource.gd" id="1_relic"]
+[resource]
+script = ExtResource("1_relic")
+id = "dream_catcher"
+relic_name = "追忆之网"
+description = "在休息处额外回复 5 点生命"
+rarity = "common"
+trigger = "on_rest"
+effect_type = "bonus_heal"
+effect_value = 5

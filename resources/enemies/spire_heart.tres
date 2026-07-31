@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/enemies/enemy_resource.gd" id="1_enemy"]
+[resource]
+script = ExtResource("1_enemy")
+id = "spire_heart"
+enemy_name = "塔核·混沌之心"
+type = "boss"
+max_hp = 300
+starting_block = 0
+intent_pattern_type = "fixed_cycle"
+intent_pattern = [{"action": "attack", "value": 25, "type": "attack"}, {"action": "debuff", "value": 0, "type": "debuff", "buff_type": "weak", "buff_amount": 2}, {"action": "attack", "value": 25, "type": "attack"}, {"action": "buff", "value": 0, "type": "buff", "buff_type": "strength", "buff_amount": 5}, {"action": "block", "value": 20, "type": "block"}]
+conditional_trigger_hp_percent = 0.4
+conditional_pattern = [{"action": "attack", "value": 35, "type": "attack"}, {"action": "attack", "value": 30, "type": "attack"}, {"action": "debuff", "value": 0, "type": "debuff", "buff_type": "vulnerable", "buff_amount": 3}]
+gold_reward_min = 60
+gold_reward_max = 90

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/enemies/enemy_resource.gd" id="1_enemy"]
+[resource]
+script = ExtResource("1_enemy")
+id = "shadow_mage"
+enemy_name = "虚空织法者"
+type = "normal"
+max_hp = 45
+starting_block = 0
+intent_pattern_type = "fixed_cycle"
+intent_pattern = [{"action": "debuff", "value": 0, "type": "debuff", "buff_type": "weak", "buff_amount": 2}, {"action": "attack", "value": 10, "type": "attack"}, {"action": "block", "value": 6, "type": "block"}]
+conditional_trigger_hp_percent = 0.0
+conditional_pattern = []
+gold_reward_min = 12
+gold_reward_max = 18

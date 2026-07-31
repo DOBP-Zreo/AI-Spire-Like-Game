@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RelicResource" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/relics/relic_resource.gd" id="1_relic"]
+[resource]
+script = ExtResource("1_relic")
+id = "happy_flower"
+relic_name = "永绽之花"
+description = "每 3 回合，获得 1 点额外能量"
+rarity = "uncommon"
+trigger = "on_turn_start"
+effect_type = "energy_every_3"
+effect_value = 1

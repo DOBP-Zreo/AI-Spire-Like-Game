@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/enemy_resource.gd" id="1_enemy_script"]
+
+[resource]
+script = ExtResource("1_enemy_script")
+id = "skeleton"
+enemy_name = "亡骨哨卫"
+type = "normal"
+max_hp = 40
+starting_block = 0
+intent_pattern_type = "random_pool"
+intent_pattern = [{"action": "attack", "value": 7, "type": "attack"}, {"action": "block", "value": 8, "type": "block"}]
+conditional_trigger_hp_percent = 0.0
+conditional_pattern = []
+gold_reward_min = 12
+gold_reward_max = 18

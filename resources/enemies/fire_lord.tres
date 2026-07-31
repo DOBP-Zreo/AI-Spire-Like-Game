@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/enemies/enemy_resource.gd" id="1_enemy"]
+[resource]
+script = ExtResource("1_enemy")
+id = "fire_lord"
+enemy_name = "焚烬领主"
+type = "boss"
+max_hp = 250
+starting_block = 0
+intent_pattern_type = "fixed_cycle"
+intent_pattern = [{"action": "attack", "value": 18, "type": "attack"}, {"action": "buff", "value": 0, "type": "buff", "buff_type": "strength", "buff_amount": 3}, {"action": "attack", "value": 22, "type": "attack"}, {"action": "block", "value": 20, "type": "block"}]
+conditional_trigger_hp_percent = 0.5
+conditional_pattern = [{"action": "attack", "value": 28, "type": "attack"}, {"action": "debuff", "value": 0, "type": "debuff", "buff_type": "vulnerable", "buff_amount": 3}, {"action": "attack", "value": 25, "type": "attack"}]
+gold_reward_min = 50
+gold_reward_max = 70

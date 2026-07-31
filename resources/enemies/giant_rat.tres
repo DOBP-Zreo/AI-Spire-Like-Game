@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/enemies/enemy_resource.gd" id="1_enemy"]
+[resource]
+script = ExtResource("1_enemy")
+id = "giant_rat"
+enemy_name = "瘟疫啃噬者"
+type = "normal"
+max_hp = 35
+starting_block = 0
+intent_pattern_type = "fixed_cycle"
+intent_pattern = [{"action": "attack", "value": 11, "type": "attack"}, {"action": "attack", "value": 6, "type": "attack"}]
+conditional_trigger_hp_percent = 0.0
+conditional_pattern = []
+gold_reward_min = 12
+gold_reward_max = 18

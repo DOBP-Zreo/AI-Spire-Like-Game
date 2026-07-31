@@ -1,0 +1,172 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/map/map_manager.gd" id="1_map_mgr"]
+[ext_resource type="Texture2D" path="res://assets/art/backgrounds/map_bg.png" id="2_bg"]
+
+[node name="MapScene" type="Control"]
+layout_mode = 0
+position = Vector2(0, 0)
+size = Vector2(1280, 720)
+script = ExtResource("1_map_mgr")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 0
+position = Vector2(0, 0)
+size = Vector2(1280, 720)
+texture = ExtResource("2_bg")
+mouse_filter = 2
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 0
+position = Vector2(20, 10)
+size = Vector2(300, 30)
+text = "选择路线"
+mouse_filter = 2
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.95, 0.85, 0.3, 1)
+
+[node name="MapArea" type="Control" parent="."]
+layout_mode = 0
+position = Vector2(60, 50)
+size = Vector2(1160, 590)
+mouse_filter = 2
+
+[node name="InfoBar" type="Control" parent="."]
+layout_mode = 0
+position = Vector2(0, 650)
+size = Vector2(1280, 70)
+mouse_filter = 2
+
+[node name="InfoBG" type="ColorRect" parent="InfoBar"]
+layout_mode = 0
+position = Vector2(0, 0)
+size = Vector2(1280, 70)
+color = Color(0.08, 0.08, 0.15, 1)
+mouse_filter = 2
+
+[node name="FloorLabel" type="Label" parent="InfoBar"]
+layout_mode = 0
+position = Vector2(40, 20)
+size = Vector2(200, 30)
+text = "第 1 层"
+mouse_filter = 2
+theme_override_font_sizes/font_size = 18
+
+[node name="HPLabel" type="Label" parent="InfoBar"]
+layout_mode = 0
+position = Vector2(280, 20)
+size = Vector2(200, 30)
+text = "❤ 70 / 70"
+mouse_filter = 2
+theme_override_font_sizes/font_size = 16
+
+[node name="GoldLabel" type="Label" parent="InfoBar"]
+layout_mode = 0
+position = Vector2(500, 20)
+size = Vector2(150, 30)
+text = "💰 99"
+mouse_filter = 2
+theme_override_font_sizes/font_size = 16
+
+[node name="DeckLabel" type="Label" parent="InfoBar"]
+layout_mode = 0
+position = Vector2(680, 20)
+size = Vector2(200, 30)
+text = "牌组: 10 张"
+mouse_filter = 2
+theme_override_font_sizes/font_size = 16
+
+[node name="HintLabel" type="Label" parent="InfoBar"]
+layout_mode = 0
+position = Vector2(900, 20)
+size = Vector2(350, 30)
+text = "点击高亮房间选择路线"
+mouse_filter = 2
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+horizontal_alignment = 2
+
+[node name="ViewDeckBtn" type="Button" parent="."]
+layout_mode = 0
+position = Vector2(920, 670)
+size = Vector2(110, 34)
+text = "查看牌库"
+theme_override_font_sizes/font_size = 13
+
+[node name="ViewRelicBtn" type="Button" parent="."]
+layout_mode = 0
+position = Vector2(1040, 670)
+size = Vector2(110, 34)
+text = "查看遗物"
+theme_override_font_sizes/font_size = 13
+
+; ── 信息面板 ──
+[node name="InfoPanel" type="Panel" parent="."]
+layout_mode = 0
+position = Vector2(340, 60)
+size = Vector2(600, 560)
+visible = false
+
+[node name="InfoTitle" type="Label" parent="InfoPanel"]
+layout_mode = 0
+position = Vector2(20, 10)
+size = Vector2(560, 30)
+text = ""
+horizontal_alignment = 1
+mouse_filter = 2
+theme_override_font_sizes/font_size = 22
+
+[node name="InfoScroll" type="ScrollContainer" parent="InfoPanel"]
+layout_mode = 0
+position = Vector2(20, 46)
+size = Vector2(560, 460)
+horizontal_scroll_mode = 0
+
+[node name="InfoList" type="VBoxContainer" parent="InfoPanel/InfoScroll"]
+layout_mode = 0
+size = Vector2(540, 0)
+theme_override_constants/separation = 6
+
+[node name="InfoClose" type="Button" parent="InfoPanel"]
+layout_mode = 0
+position = Vector2(230, 514)
+size = Vector2(140, 38)
+text = "关闭 (ESC)"
+theme_override_font_sizes/font_size = 16
+
+[node name="SettingsBtn" type="Button" parent="."]
+layout_mode = 0
+position = Vector2(1220, 8)
+size = Vector2(48, 48)
+text = "⚙"
+theme_override_font_sizes/font_size = 24
+flat = true
+
+[node name="SettingsPanel" type="Panel" parent="."]
+layout_mode = 0
+position = Vector2(490, 240)
+size = Vector2(300, 240)
+visible = false
+
+[node name="SettingsTitle" type="Label" parent="SettingsPanel"]
+layout_mode = 0
+position = Vector2(20, 20)
+size = Vector2(260, 36)
+text = "设置"
+horizontal_alignment = 1
+mouse_filter = 2
+theme_override_font_sizes/font_size = 22
+
+[node name="ReturnMenuBtn" type="Button" parent="SettingsPanel"]
+layout_mode = 0
+position = Vector2(50, 80)
+size = Vector2(200, 50)
+text = "返回主菜单"
+theme_override_font_sizes/font_size = 16
+
+[node name="ContinueBtn" type="Button" parent="SettingsPanel"]
+layout_mode = 0
+position = Vector2(50, 145)
+size = Vector2(200, 50)
+text = "继续游戏"
+theme_override_font_sizes/font_size = 16

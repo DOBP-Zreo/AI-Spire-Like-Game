@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RelicResource" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/relics/relic_resource.gd" id="1_relic"]
+[resource]
+script = ExtResource("1_relic")
+id = "blood_vial"
+relic_name = "凝血药剂"
+description = "每场战斗开始时，回复 2 点生命"
+rarity = "common"
+trigger = "on_combat_start"
+effect_type = "heal"
+effect_value = 2

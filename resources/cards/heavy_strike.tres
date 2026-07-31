@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/cards/card_resource.gd" id="1_card_script"]
+
+[resource]
+script = ExtResource("1_card_script")
+id = "heavy_strike"
+card_name = "猛劈"
+type = "attack"
+cost = 2
+description = "造成 {damage} 点伤害"
+rarity = "common"
+keywords = []
+base_damage = 12
+base_block = 0
+base_draw = 0
+special_effect = ""
+upgraded = false
+upgraded_damage = 16
+upgraded_block = 0
+upgraded_draw = 0
+upgraded_cost = 2

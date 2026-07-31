@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RelicResource" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/relics/relic_resource.gd" id="1_relic"]
+[resource]
+script = ExtResource("1_relic")
+id = "vajra"
+relic_name = "破魔锥"
+description = "每场战斗开始时，获得 1 点力量"
+rarity = "common"
+trigger = "on_combat_start"
+effect_type = "strength"
+effect_value = 1

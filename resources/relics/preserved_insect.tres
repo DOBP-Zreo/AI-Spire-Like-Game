@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RelicResource" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/relics/relic_resource.gd" id="1_relic"]
+[resource]
+script = ExtResource("1_relic")
+id = "preserved_insect"
+relic_name = "琥珀之虫"
+description = "战斗开始时，敌人生命值减少 25%"
+rarity = "uncommon"
+trigger = "on_combat_start"
+effect_type = "enemy_hp_cut"
+effect_value = 25

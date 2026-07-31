@@ -1,0 +1,469 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/battle/battle_manager.gd" id="1_battle_mgr"]
+[ext_resource type="Script" path="res://scripts/battle/enemy_battle.gd" id="2_enemy_battle"]
+[ext_resource type="Texture2D" path="res://assets/art/characters/warrior/warrior_idle.png" id="3_warrior"]
+[ext_resource type="Texture2D" path="res://assets/art/backgrounds/battle_bg.png" id="4_bg"]
+
+[node name="BattleScene" type="Control"]
+layout_mode = 0
+position = Vector2(0, 0)
+size = Vector2(1280, 720)
+script = ExtResource("1_battle_mgr")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 0
+position = Vector2(0, 0)
+size = Vector2(1280, 720)
+texture = ExtResource("4_bg")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+; ── 敌人区域 ──
+[node name="EnemyArea" type="Control" parent="."]
+layout_mode = 0
+position = Vector2(340, 50)
+size = Vector2(600, 370)
+mouse_filter = 2
+script = ExtResource("2_enemy_battle")
+
+[node name="EnemySprite" type="ColorRect" parent="EnemyArea"]
+layout_mode = 0
+position = Vector2(200, 10)
+size = Vector2(200, 200)
+color = Color(0.2, 0.6, 0.3, 1)
+mouse_filter = 2
+
+[node name="EnemySpriteTex" type="TextureRect" parent="EnemyArea"]
+layout_mode = 0
+position = Vector2(200, 10)
+size = Vector2(200, 200)
+expand_mode = 1
+stretch_mode = 5
+visible = false
+mouse_filter = 2
+
+[node name="NameLabel" type="Label" parent="EnemyArea"]
+layout_mode = 0
+position = Vector2(200, 215)
+size = Vector2(200, 28)
+text = "绿色史莱姆"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+theme_override_font_sizes/font_size = 16
+
+[node name="HPBar" type="ProgressBar" parent="EnemyArea"]
+layout_mode = 0
+position = Vector2(180, 248)
+size = Vector2(240, 22)
+max_value = 30.0
+value = 30.0
+show_percentage = false
+
+[node name="HPText" type="Label" parent="EnemyArea/HPBar"]
+layout_mode = 0
+position = Vector2(0, 0)
+size = Vector2(240, 22)
+text = "30 / 30"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+theme_override_font_sizes/font_size = 12
+
+[node name="BlockLabel" type="Label" parent="EnemyArea"]
+layout_mode = 0
+position = Vector2(260, 273)
+size = Vector2(80, 24)
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+visible = false
+mouse_filter = 2
+theme_override_font_sizes/font_size = 14
+
+[node name="PoisonLabel" type="Label" parent="EnemyArea"]
+layout_mode = 0
+position = Vector2(180, 295)
+size = Vector2(240, 24)
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+visible = false
+mouse_filter = 2
+theme_override_font_sizes/font_size = 12
+
+[node name="EStrengthLabel" type="Label" parent="EnemyArea"]
+layout_mode = 0
+position = Vector2(160, 318)
+size = Vector2(90, 22)
+text = "力量: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+visible = false
+mouse_filter = 2
+theme_override_font_sizes/font_size = 12
+
+[node name="EVulnerableLabel" type="Label" parent="EnemyArea"]
+layout_mode = 0
+position = Vector2(255, 318)
+size = Vector2(90, 22)
+text = "易伤: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+visible = false
+mouse_filter = 2
+theme_override_font_sizes/font_size = 12
+
+[node name="EWeakLabel" type="Label" parent="EnemyArea"]
+layout_mode = 0
+position = Vector2(350, 318)
+size = Vector2(90, 22)
+text = "虚弱: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+visible = false
+mouse_filter = 2
+theme_override_font_sizes/font_size = 12
+
+[node name="IntentArea" type="Control" parent="EnemyArea"]
+layout_mode = 0
+position = Vector2(260, 342)
+size = Vector2(80, 55)
+mouse_filter = 2
+
+[node name="IntentIcon" type="Label" parent="EnemyArea/IntentArea"]
+layout_mode = 0
+position = Vector2(0, 0)
+size = Vector2(80, 30)
+text = "ATK"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+theme_override_font_sizes/font_size = 20
+
+[node name="IntentValue" type="Label" parent="EnemyArea/IntentArea"]
+layout_mode = 0
+position = Vector2(0, 30)
+size = Vector2(80, 25)
+text = "8"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+theme_override_font_sizes/font_size = 16
+
+; ── 玩家信息 ──
+[node name="PlayerArea" type="Control" parent="."]
+layout_mode = 0
+position = Vector2(30, 430)
+size = Vector2(200, 170)
+mouse_filter = 2
+
+[node name="PlayerNameLabel" type="Label" parent="PlayerArea"]
+layout_mode = 0
+position = Vector2(0, 0)
+size = Vector2(200, 26)
+text = "战士"
+mouse_filter = 2
+theme_override_font_sizes/font_size = 18
+
+[node name="PlayerSprite" type="TextureRect" parent="PlayerArea"]
+layout_mode = 0
+position = Vector2(40, 22)
+size = Vector2(120, 90)
+expand_mode = 1
+stretch_mode = 5
+texture = ExtResource("3_warrior")
+mouse_filter = 2
+
+[node name="HPBar" type="ProgressBar" parent="PlayerArea"]
+layout_mode = 0
+position = Vector2(0, 115)
+size = Vector2(195, 20)
+max_value = 70.0
+value = 70.0
+show_percentage = false
+
+[node name="HPText" type="Label" parent="PlayerArea/HPBar"]
+layout_mode = 0
+position = Vector2(0, 0)
+size = Vector2(195, 20)
+text = "70 / 70"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+theme_override_font_sizes/font_size = 11
+
+[node name="BlockLabel" type="Label" parent="PlayerArea"]
+layout_mode = 0
+position = Vector2(0, 138)
+size = Vector2(190, 18)
+text = "格挡: 0"
+visible = false
+mouse_filter = 2
+theme_override_font_sizes/font_size = 13
+
+[node name="EnergyLabel" type="Label" parent="PlayerArea"]
+layout_mode = 0
+position = Vector2(0, 157)
+size = Vector2(190, 24)
+text = "能量: 3/3"
+mouse_filter = 2
+theme_override_font_sizes/font_size = 15
+
+; ── 状态面板（独立区域）──
+[node name="StatusArea" type="Control" parent="."]
+layout_mode = 0
+position = Vector2(30, 610)
+size = Vector2(200, 85)
+mouse_filter = 2
+
+[node name="StrengthLabel" type="Label" parent="StatusArea"]
+layout_mode = 0
+position = Vector2(0, 0)
+size = Vector2(95, 18)
+text = ""
+visible = false
+mouse_filter = 2
+theme_override_font_sizes/font_size = 12
+
+[node name="DexterityLabel" type="Label" parent="StatusArea"]
+layout_mode = 0
+position = Vector2(100, 0)
+size = Vector2(95, 18)
+text = ""
+visible = false
+mouse_filter = 2
+theme_override_font_sizes/font_size = 12
+
+[node name="VulnerableLabel" type="Label" parent="StatusArea"]
+layout_mode = 0
+position = Vector2(0, 22)
+size = Vector2(95, 18)
+text = ""
+visible = false
+mouse_filter = 2
+theme_override_font_sizes/font_size = 12
+
+[node name="WeakLabel" type="Label" parent="StatusArea"]
+layout_mode = 0
+position = Vector2(100, 22)
+size = Vector2(95, 18)
+text = ""
+visible = false
+mouse_filter = 2
+theme_override_font_sizes/font_size = 12
+
+[node name="PoisonLabel" type="Label" parent="StatusArea"]
+layout_mode = 0
+position = Vector2(0, 44)
+size = Vector2(95, 18)
+text = ""
+visible = false
+mouse_filter = 2
+theme_override_font_sizes/font_size = 12
+
+; ── 牌堆信息 + 查看按钮 ──
+[node name="DeckInfo" type="Control" parent="."]
+layout_mode = 0
+position = Vector2(30, 685)
+size = Vector2(200, 28)
+mouse_filter = 2
+
+[node name="DeckLabel" type="Label" parent="DeckInfo"]
+layout_mode = 0
+position = Vector2(0, 2)
+size = Vector2(90, 22)
+text = "牌堆: 0"
+mouse_filter = 2
+theme_override_font_sizes/font_size = 12
+
+[node name="ExhaustLabel" type="Label" parent="DeckInfo"]
+layout_mode = 0
+position = Vector2(92, 2)
+size = Vector2(80, 22)
+text = "消耗: 0"
+mouse_filter = 2
+theme_override_font_sizes/font_size = 12
+
+[node name="ViewDeckBtn" type="Button" parent="."]
+layout_mode = 0
+position = Vector2(30, 655)
+size = Vector2(90, 28)
+text = "牌库"
+theme_override_font_sizes/font_size = 12
+
+[node name="ViewRelicBtn" type="Button" parent="."]
+layout_mode = 0
+position = Vector2(130, 655)
+size = Vector2(90, 28)
+text = "遗物"
+theme_override_font_sizes/font_size = 12
+
+[node name="ViewExhaustBtn" type="Button" parent="."]
+layout_mode = 0
+position = Vector2(130, 625)
+size = Vector2(90, 24)
+text = "消耗 0"
+theme_override_font_sizes/font_size = 11
+
+; ── 回合标签 ──
+[node name="TurnLabel" type="Label" parent="."]
+layout_mode = 0
+position = Vector2(30, 10)
+size = Vector2(260, 32)
+text = "回合 1  —  你的回合"
+mouse_filter = 2
+theme_override_font_sizes/font_size = 18
+
+; ── 手牌区 ──
+[node name="HandArea" type="Control" parent="."]
+layout_mode = 0
+position = Vector2(240, 500)
+size = Vector2(800, 190)
+mouse_filter = 2
+
+; ── 按钮 ──
+[node name="EndTurnBtn" type="Button" parent="."]
+layout_mode = 0
+position = Vector2(1090, 620)
+size = Vector2(160, 50)
+text = "结束回合 (E)"
+theme_override_font_sizes/font_size = 18
+
+; ── 查看面板 ──
+[node name="ViewerPanel" type="Panel" parent="."]
+layout_mode = 0
+position = Vector2(340, 60)
+size = Vector2(600, 560)
+visible = false
+
+[node name="ViewerTitle" type="Label" parent="ViewerPanel"]
+layout_mode = 0
+position = Vector2(20, 10)
+size = Vector2(560, 30)
+text = ""
+horizontal_alignment = 1
+mouse_filter = 2
+theme_override_font_sizes/font_size = 22
+
+[node name="ViewerScroll" type="ScrollContainer" parent="ViewerPanel"]
+layout_mode = 0
+position = Vector2(20, 46)
+size = Vector2(560, 460)
+horizontal_scroll_mode = 0
+
+[node name="ViewerList" type="VBoxContainer" parent="ViewerPanel/ViewerScroll"]
+layout_mode = 0
+size = Vector2(540, 0)
+theme_override_constants/separation = 6
+
+[node name="ViewerClose" type="Button" parent="ViewerPanel"]
+layout_mode = 0
+position = Vector2(230, 514)
+size = Vector2(140, 38)
+text = "关闭 (ESC)"
+theme_override_font_sizes/font_size = 16
+
+[node name="SettingsBtn" type="Button" parent="."]
+layout_mode = 0
+position = Vector2(1220, 8)
+size = Vector2(48, 48)
+text = "⚙"
+theme_override_font_sizes/font_size = 24
+flat = true
+
+[node name="SettingsPanel" type="Panel" parent="."]
+layout_mode = 0
+position = Vector2(490, 240)
+size = Vector2(300, 240)
+visible = false
+
+[node name="SettingsTitle" type="Label" parent="SettingsPanel"]
+layout_mode = 0
+position = Vector2(20, 20)
+size = Vector2(260, 36)
+text = "设置"
+horizontal_alignment = 1
+mouse_filter = 2
+theme_override_font_sizes/font_size = 22
+
+[node name="ReturnMenuBtn" type="Button" parent="SettingsPanel"]
+layout_mode = 0
+position = Vector2(50, 80)
+size = Vector2(200, 50)
+text = "返回主菜单"
+theme_override_font_sizes/font_size = 16
+
+[node name="ContinueBtn" type="Button" parent="SettingsPanel"]
+layout_mode = 0
+position = Vector2(50, 145)
+size = Vector2(200, 50)
+text = "继续游戏"
+theme_override_font_sizes/font_size = 16
+
+; ── 结果面板 ──
+[node name="ResultPanel" type="Panel" parent="."]
+layout_mode = 0
+position = Vector2(490, 270)
+size = Vector2(300, 180)
+visible = false
+
+[node name="ResultLabel" type="Label" parent="ResultPanel"]
+layout_mode = 0
+position = Vector2(10, 20)
+size = Vector2(280, 100)
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+theme_override_font_sizes/font_size = 28
+
+[node name="ResultButton" type="Button" parent="ResultPanel"]
+layout_mode = 0
+position = Vector2(100, 125)
+size = Vector2(100, 40)
+text = "确定"
+
+; ── 通关面板 ──
+[node name="VictoryPanel" type="Panel" parent="."]
+layout_mode = 0
+position = Vector2(340, 100)
+size = Vector2(600, 400)
+visible = false
+
+[node name="VictoryTitle" type="Label" parent="VictoryPanel"]
+layout_mode = 0
+position = Vector2(0, 40)
+size = Vector2(600, 60)
+text = "胜  利"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 52
+theme_override_colors/font_color = Color(1.0, 0.85, 0.2, 1)
+
+[node name="VictorySubtitle" type="Label" parent="VictoryPanel"]
+layout_mode = 0
+position = Vector2(0, 120)
+size = Vector2(600, 80)
+text = "恭喜通关！\n你以精湛的牌技击败了尖塔中的所有敌人。"
+horizontal_alignment = 1
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 1)
+
+[node name="VictoryStats" type="Label" parent="VictoryPanel"]
+layout_mode = 0
+position = Vector2(100, 220)
+size = Vector2(400, 60)
+text = ""
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+
+[node name="VictoryBtn" type="Button" parent="VictoryPanel"]
+layout_mode = 0
+position = Vector2(200, 310)
+size = Vector2(200, 50)
+text = "返回主菜单"
+theme_override_font_sizes/font_size = 20
