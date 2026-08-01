@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_manager.gd" id="1_battle_mgr"]
 [ext_resource type="Script" path="res://scripts/battle/enemy_battle.gd" id="2_enemy_battle"]
 [ext_resource type="Texture2D" path="res://assets/art/characters/warrior/warrior_idle.png" id="3_warrior"]
 [ext_resource type="Texture2D" path="res://assets/art/backgrounds/battle_bg.png" id="4_bg"]
+[ext_resource type="Texture2D" path="res://assets/art/ui/icons/hp_icon.png" id="5_hp"]
+[ext_resource type="Texture2D" path="res://assets/art/ui/icons/block_icon.png" id="6_block"]
+[ext_resource type="Texture2D" path="res://assets/art/ui/icons/energy_icon.png" id="7_energy"]
 
 [node name="BattleScene" type="Control"]
 layout_mode = 0
@@ -129,25 +132,33 @@ theme_override_font_sizes/font_size = 12
 
 [node name="IntentArea" type="Control" parent="EnemyArea"]
 layout_mode = 0
-position = Vector2(260, 342)
-size = Vector2(80, 55)
+position = Vector2(260, 335)
+size = Vector2(80, 75)
 mouse_filter = 2
 
-[node name="IntentIcon" type="Label" parent="EnemyArea/IntentArea"]
+[node name="IntentIcon" type="TextureRect" parent="EnemyArea/IntentArea"]
 layout_mode = 0
-position = Vector2(0, 0)
-size = Vector2(80, 30)
-text = "ATK"
+position = Vector2(24, 0)
+size = Vector2(32, 32)
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="IntentLabel" type="Label" parent="EnemyArea/IntentArea"]
+layout_mode = 0
+position = Vector2(0, 34)
+size = Vector2(80, 16)
+text = ""
 horizontal_alignment = 1
 vertical_alignment = 1
 mouse_filter = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 12
 
 [node name="IntentValue" type="Label" parent="EnemyArea/IntentArea"]
 layout_mode = 0
-position = Vector2(0, 30)
+position = Vector2(0, 50)
 size = Vector2(80, 25)
-text = "8"
+text = ""
 horizontal_alignment = 1
 vertical_alignment = 1
 mouse_filter = 2
@@ -179,11 +190,20 @@ mouse_filter = 2
 
 [node name="HPBar" type="ProgressBar" parent="PlayerArea"]
 layout_mode = 0
-position = Vector2(0, 115)
-size = Vector2(195, 20)
+position = Vector2(32, 115)
+size = Vector2(163, 20)
 max_value = 70.0
 value = 70.0
 show_percentage = false
+
+[node name="HPIcon" type="TextureRect" parent="PlayerArea"]
+layout_mode = 0
+position = Vector2(4, 112)
+size = Vector2(24, 24)
+texture = ExtResource("5_hp")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
 
 [node name="HPText" type="Label" parent="PlayerArea/HPBar"]
 layout_mode = 0
@@ -197,18 +217,36 @@ theme_override_font_sizes/font_size = 11
 
 [node name="BlockLabel" type="Label" parent="PlayerArea"]
 layout_mode = 0
-position = Vector2(0, 138)
-size = Vector2(190, 18)
+position = Vector2(32, 138)
+size = Vector2(158, 18)
 text = "格挡: 0"
 visible = false
 mouse_filter = 2
 theme_override_font_sizes/font_size = 13
 
+[node name="BlockIcon" type="TextureRect" parent="PlayerArea"]
+layout_mode = 0
+position = Vector2(4, 136)
+size = Vector2(24, 24)
+texture = ExtResource("6_block")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
 [node name="EnergyLabel" type="Label" parent="PlayerArea"]
 layout_mode = 0
-position = Vector2(0, 157)
-size = Vector2(190, 24)
+position = Vector2(32, 157)
+size = Vector2(158, 24)
 text = "能量: 3/3"
+
+[node name="EnergyIcon" type="TextureRect" parent="PlayerArea"]
+layout_mode = 0
+position = Vector2(4, 158)
+size = Vector2(24, 24)
+texture = ExtResource("7_energy")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
 mouse_filter = 2
 theme_override_font_sizes/font_size = 15
 
@@ -369,9 +407,9 @@ theme_override_font_sizes/font_size = 16
 [node name="SettingsBtn" type="Button" parent="."]
 layout_mode = 0
 position = Vector2(1220, 8)
-size = Vector2(48, 48)
-text = "⚙"
-theme_override_font_sizes/font_size = 24
+size = Vector2(48, 36)
+text = "设置"
+theme_override_font_sizes/font_size = 14
 flat = true
 
 [node name="SettingsPanel" type="Panel" parent="."]

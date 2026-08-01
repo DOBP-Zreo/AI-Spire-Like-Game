@@ -15,6 +15,7 @@ var node_uis: Dictionary = {}    # id → MapNodeUI
 @onready var hp_label: Label = $InfoBar/HPLabel
 @onready var gold_label: Label = $InfoBar/GoldLabel
 @onready var deck_label: Label = $InfoBar/DeckLabel
+@onready var info_bar: Control = $InfoBar
 
 @onready var settings_btn: Button = $SettingsBtn
 @onready var settings_panel: Panel = $SettingsPanel
@@ -36,6 +37,10 @@ func _ready() -> void:
 	view_deck_btn.pressed.connect(_show_deck)
 	view_relic_btn.pressed.connect(_show_relics)
 	info_close.pressed.connect(func(): info_panel.visible = false)
+	
+	# 添加状态栏图标
+	_add_info_icon(260, 24, "res://assets/art/ui/icons/hp_icon.png")
+	_add_info_icon(480, 24, "res://assets/art/ui/icons/gold_icon.png")
 	
 	# 如果是新游戏，初始化 GameState
 	if GameState.current_floor_map == null:
@@ -59,10 +64,20 @@ func _ready() -> void:
 	_refresh_info()
 	_draw_map()
 
+func _add_info_icon(x: float, y: float, path: String) -> void:
+	var icon = TextureRect.new()
+	icon.position = Vector2(x, y)
+	icon.size = Vector2(24, 24)
+	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	icon.stretch_mode = TextureRect.STRETCH_KEEP_CENTERED
+	icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	if ResourceLoader.exists(path): icon.texture = load(path)
+	info_bar.add_child(icon)
+
 func _refresh_info() -> void:
 	floor_label.text = "第 %d 层" % GameState.floor_level
-	hp_label.text = "❤ %d / %d" % [GameState.current_hp, GameState.max_hp]
-	gold_label.text = "💰 %d" % GameState.gold
+	hp_label.text = "HP: %d / %d" % [GameState.current_hp, GameState.max_hp]
+	gold_label.text = "金币: %d" % GameState.gold
 	deck_label.text = "牌组: %d 张" % GameState.get_deck_size()
 
 func _draw_map() -> void:

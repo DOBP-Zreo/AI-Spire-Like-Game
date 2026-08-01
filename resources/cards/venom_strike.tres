@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/cards/card_resource.gd" id="1_card"]
+[resource]
+script = ExtResource("1_card")
+id = "venom_strike"
+card_name = "毒刃"
+type = "attack"
+cost = 1
+description = "造成 4 点伤害，施加 3 层中毒"
+rarity = "uncommon"
+base_damage = 4
+base_block = 0
+base_draw = 0
+upgraded_damage = 6
+upgraded_block = 0
+upgraded_draw = 0
+special_effect = "poison_3"
+keywords = []
+upgraded = false

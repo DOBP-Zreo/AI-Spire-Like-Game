@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RelicResource" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/relics/relic_resource.gd" id="1_relic"]
+[resource]
+script = ExtResource("1_relic")
+id = "mana_crystal"
+relic_name = "法力水晶"
+description = "每回合额外获得 1 点能量"
+rarity = "rare"
+trigger = "on_turn_start"
+effect_type = "bonus_energy"
+effect_value = 1

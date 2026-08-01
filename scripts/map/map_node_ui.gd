@@ -20,36 +20,29 @@ func setup(data: MapNodeData, available: bool, current: bool) -> void:
 	
 	var color = data.get_color()
 	var bg = get_node_or_null("BG")
-	var icon_label = get_node_or_null("IconLabel")
+	var icon_img = get_node_or_null("NodeIcon")
 	var name_label = get_node_or_null("NameLabel")
 	
 	if current:
 		if bg: bg.color = Color.WHITE
-		if icon_label: icon_label.add_theme_color_override("font_color", Color.BLACK)
 		if name_label: name_label.add_theme_color_override("font_color", Color.BLACK)
 	elif available:
 		if bg: bg.color = color
-		if icon_label: icon_label.add_theme_color_override("font_color", Color.WHITE)
 		if name_label: name_label.add_theme_color_override("font_color", Color(0.9, 0.9, 0.9))
 	else:
 		if bg: bg.color = color.darkened(0.6)
-		if icon_label: icon_label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
 		if name_label: name_label.add_theme_color_override("font_color", Color(0.4, 0.4, 0.4))
 	
-	if icon_label: icon_label.text = _get_icon(data.room_type)
+	if icon_img:
+		var tex = _get_icon_texture(data.room_type)
+		if tex: icon_img.texture = tex
 	if name_label: name_label.text = data.get_display_name()
 
-func _get_icon(room_type: String) -> String:
-	match room_type:
-		"battle":   return "⚔"
-		"elite":    return "⭐"
-		"boss":     return "💀"
-		"shop":     return "🛒"
-		"rest":     return "🔥"
-		"treasure": return "📦"
-		"event":    return "❓"
-		"start":    return "▶"
-	return "?"
+func _get_icon_texture(room_type: String) -> Texture2D:
+	var path = "res://assets/art/ui/map_nodes/node_" + room_type + ".png"
+	if ResourceLoader.exists(path):
+		return load(path)
+	return null
 
 func _on_hover_in() -> void:
 	if is_available:

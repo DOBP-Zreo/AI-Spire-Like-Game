@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/cards/card_resource.gd" id="1_card"]
+[resource]
+script = ExtResource("1_card")
+id = "berserker"
+card_name = "狂暴"
+type = "power"
+cost = 1
+description = "获得 3 点力量，每回合失去 1 生命"
+rarity = "uncommon"
+base_damage = 0
+base_block = 0
+base_draw = 0
+upgraded_damage = 0
+upgraded_block = 0
+upgraded_draw = 0
+special_effect = "strength_3_hp_loss_1"
+keywords = []
+upgraded = false

@@ -38,6 +38,14 @@ static var card_ids: Dictionary = {
 	# 稀有卡牌
 	"demon_form":   {"name": "魔化",       "type": "power",  "cost": 3, "rarity": "rare",    "desc": "每回合获得 2 点力量",                      "dmg": 0, "blk": 0, "draw": 0, "upgraded_dmg": 0, "upgraded_blk": 0, "upgraded_draw": 0, "effect": "strength_per_turn_2"},
 	"ghostly_armor":{"name": "幻影甲",     "type": "skill",  "cost": 1, "rarity": "rare",    "desc": "获得 10 点格挡，虚无",                     "dmg": 0, "blk": 10, "draw": 0, "upgraded_dmg": 0, "upgraded_blk": 14, "upgraded_draw": 0, "effect": "", "keywords": ["ethereal"]},
+	
+	# 新卡牌
+	"whirlwind":    {"name": "旋风斩",     "type": "attack", "cost": 2, "rarity": "uncommon","desc": "造成 5 点伤害 3 次",                       "dmg": 5, "blk": 0, "draw": 0, "upgraded_dmg": 7, "upgraded_blk": 0, "upgraded_draw": 0, "effect": "hit_thrice"},
+	"dark_pact":    {"name": "暗影契约",   "type": "power",  "cost": 0, "rarity": "rare",    "desc": "失去 3 生命，获得 2 点能量",                "dmg": 0, "blk": 0, "draw": 0, "upgraded_dmg": 0, "upgraded_blk": 0, "upgraded_draw": 0, "effect": "lose_hp_3_gain_2_energy"},
+	"frost_ward":   {"name": "冰霜守护",   "type": "skill",  "cost": 3, "rarity": "uncommon","desc": "获得 20 点格挡",                           "dmg": 0, "blk": 20, "draw": 0, "upgraded_dmg": 0, "upgraded_blk": 28, "upgraded_draw": 0, "effect": ""},
+	"berserker":    {"name": "狂暴",       "type": "power",  "cost": 1, "rarity": "uncommon","desc": "获得 3 点力量，每回合失去 1 生命",        "dmg": 0, "blk": 0, "draw": 0, "upgraded_dmg": 0, "upgraded_blk": 0, "upgraded_draw": 0, "effect": "strength_3_hp_loss_1"},
+	"venom_strike": {"name": "毒刃",       "type": "attack", "cost": 1, "rarity": "uncommon","desc": "造成 4 点伤害，施加 3 层中毒",           "dmg": 4, "blk": 0, "draw": 0, "upgraded_dmg": 6, "upgraded_blk": 0, "upgraded_draw": 0, "effect": "poison_3"},
+	"echo_slash":   {"name": "回音斩",     "type": "attack", "cost": 2, "rarity": "common",  "desc": "造成 10 点伤害，抽 1 张牌",             "dmg": 10, "blk": 0, "draw": 1, "upgraded_dmg": 14, "upgraded_blk": 0, "upgraded_draw": 1, "effect": ""},
 }
 
 # 根据 ID 创建 CardResource

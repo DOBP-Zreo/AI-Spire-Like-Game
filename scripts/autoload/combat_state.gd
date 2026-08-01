@@ -208,6 +208,22 @@ func _execute_card_effect(card: CardResource) -> void:
 		"strength_2":    player_strength += 2
 		"draw_1":        _draw_one_card()
 		"draw_2":        for _i in range(2): _draw_one_card()
+		"hit_twice":     
+			for _i in range(2):
+				deal_damage_to_enemy(dmg)
+		"hit_thrice":
+			for _i in range(3):
+				deal_damage_to_enemy(dmg)
+		"lose_hp_2":
+			player_hp = max(0, player_hp - 2)
+			hp_changed.emit("player", player_hp, player_max_hp)
+		"lose_hp_3_gain_2_energy":
+			player_hp = max(0, player_hp - 3)
+			player_energy += 2
+			hp_changed.emit("player", player_hp, player_max_hp)
+		"strength_3_hp_loss_1":
+			player_strength += 3
+			# berserker per-turn hp loss handled in _apply_power_effects
 
 # ============================================================
 # 伤害与格挡
@@ -251,6 +267,14 @@ func deal_damage_to_player(amount: int) -> void:
 	player_hp -= final_dmg
 	damage_dealt.emit("player", final_dmg)
 	hp_changed.emit("player", player_hp, player_max_hp)
+	
+	# 荆棘斗篷：玩家受伤时敌人受反伤
+	if enemy_hp > 0:
+		for relic in GameState.relics:
+			if relic.trigger == "on_hit" and relic.effect_type == "thorns":
+				enemy_hp -= relic.effect_value
+				hp_changed.emit("enemy", enemy_hp, enemy_max_hp)
+				break
 
 func gain_block(target: String, amount: int) -> void:
 	if target == "player":
@@ -340,6 +364,9 @@ func end_enemy_turn() -> void:
 	# 格挡清零（仅玩家）
 	player_block = 0
 	
+	# 应用能力牌每回合效果
+	_apply_power_effects()
+	
 	# 检查战斗结束
 	if _check_combat_end():
 		return
@@ -364,9 +391,30 @@ func end_enemy_turn() -> void:
 	player_turn_started.emit()
 	state_updated.emit()
 
+# 应用能力牌每回合效果（demon_form, berserker, burn 等）
+func _apply_power_effects() -> void:
+	for card in exhaust_pile:
+		match card.special_effect:
+			"strength_per_turn_2":
+				player_strength += 2
+			"strength_3_hp_loss_1":
+				player_hp = max(0, player_hp - 1)
+				hp_changed.emit("player", player_hp, player_max_hp)
+			"poison_3":
+				if enemy_hp > 0:
+					apply_poison("enemy", 3)
+
 # 战斗结束检查
 func _check_combat_end() -> bool:
 	if player_hp <= 0:
+		# 凤凰羽毛：致命伤害时复活
+		for relic in GameState.relics:
+			if relic.trigger == "on_death" and relic.effect_type == "revive_30":
+				player_hp = int(player_max_hp * 0.3)
+				GameState.relics.erase(relic)  # 一次性，用后移除
+				hp_changed.emit("player", player_hp, player_max_hp)
+				state_updated.emit()
+				return false  # 继续战斗
 		is_combat_active = false
 		is_player_turn = false
 		combat_ended.emit(false)
@@ -374,6 +422,10 @@ func _check_combat_end() -> bool:
 		return true
 	
 	if enemy_hp <= 0:
+		# 亡者印记：击杀敌人回血
+		for relic in GameState.relics:
+			if relic.trigger == "on_enemy_killed" and relic.effect_type == "heal":
+				player_hp = min(player_max_hp, player_hp + relic.effect_value)
 		is_combat_active = false
 		is_player_turn = false
 		combat_ended.emit(true)

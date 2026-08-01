@@ -123,6 +123,8 @@ func _ready() -> void:
 func _on_combat_start() -> void:
 	# 触发战斗开始遗物
 	_activate_start_relics()
+	# 第一回合也触发回合开始遗物
+	_activate_turn_start_relics()
 	end_turn_btn.disabled = false
 	_refresh_all()
 
@@ -137,6 +139,8 @@ func _activate_start_relics() -> void:
 				"enemy_hp_cut":
 					CombatState.enemy_hp = int(CombatState.enemy_hp * (100 - relic.effect_value) / 100.0)
 					CombatState.enemy_max_hp = CombatState.enemy_hp
+				"heal":
+					CombatState.player_hp = min(CombatState.player_max_hp, CombatState.player_hp + relic.effect_value)
 	CombatState.state_updated.emit()
 
 # ============================================================
@@ -153,7 +157,20 @@ func _on_end_turn_pressed() -> void:
 	CombatState.end_enemy_turn()
 	
 	if CombatState.is_combat_active:
+		_activate_turn_start_relics()
 		end_turn_btn.disabled = false
+
+func _activate_turn_start_relics() -> void:
+	var turn = CombatState.turn_number
+	for relic in GameState.relics:
+		if relic.trigger == "on_turn_start":
+			match relic.effect_type:
+				"bonus_energy":
+					CombatState.player_energy += relic.effect_value
+				"energy_every_3":
+					if turn % 3 == 0:
+						CombatState.player_energy += relic.effect_value
+	CombatState.state_updated.emit()
 
 func _execute_enemy_turn() -> void:
 	var intent = CombatState.get_enemy_intent()

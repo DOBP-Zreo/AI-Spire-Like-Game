@@ -15,15 +15,13 @@ size = Vector2(86, 56)
 color = Color(0.3, 0.3, 0.3, 1)
 mouse_filter = 2
 
-[node name="IconLabel" type="Label" parent="."]
+[node name="NodeIcon" type="TextureRect" parent="."]
 layout_mode = 0
-position = Vector2(0, 4)
-size = Vector2(90, 28)
-text = "?"
-horizontal_alignment = 1
-vertical_alignment = 1
+position = Vector2(25, 4)
+size = Vector2(40, 40)
+expand_mode = 1
+stretch_mode = 5
 mouse_filter = 2
-theme_override_font_sizes/font_size = 18
 
 [node name="NameLabel" type="Label" parent="."]
 layout_mode = 0

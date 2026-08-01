@@ -10,14 +10,14 @@ const COLS = 3
 # 敌人池（按楼层分配）
 static var enemy_pools: Dictionary = {
 	1: ["slime_green", "slime_red", "skeleton"],
-	2: ["slime_green", "slime_red", "skeleton", "fire_elemental"],
-	3: ["slime_red", "skeleton", "fire_elemental", "goblin_captain"],
+	2: ["slime_green", "slime_red", "skeleton", "fire_elemental", "shadow_mage", "frost_wolf"],
+	3: ["slime_red", "skeleton", "fire_elemental", "shadow_mage", "giant_rat"],
 }
 
 static var elite_pools: Dictionary = {
 	1: ["goblin_captain"],
-	2: ["goblin_captain", "dark_knight"],
-	3: ["dark_knight"],
+	2: ["goblin_captain", "dark_knight", "cursed_knight"],
+	3: ["dark_knight", "cursed_knight"],
 }
 
 static var boss_pools: Dictionary = {

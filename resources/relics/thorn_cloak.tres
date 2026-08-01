@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RelicResource" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/relics/relic_resource.gd" id="1_relic"]
+[resource]
+script = ExtResource("1_relic")
+id = "thorn_cloak"
+relic_name = "荆棘斗篷"
+description = "受到攻击时，对敌人造成 3 点反伤"
+rarity = "uncommon"
+trigger = "on_hit"
+effect_type = "thorns"
+effect_value = 3

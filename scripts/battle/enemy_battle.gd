@@ -10,7 +10,8 @@ extends Control
 @onready var hp_bar: ProgressBar = $HPBar
 @onready var hp_text: Label = $HPBar/HPText
 @onready var block_label: Label = $BlockLabel
-@onready var intent_icon: Label = $IntentArea/IntentIcon
+@onready var intent_icon: TextureRect = $IntentArea/IntentIcon
+@onready var intent_label: Label = $IntentArea/IntentLabel
 @onready var intent_value: Label = $IntentArea/IntentValue
 @onready var poison_label: Label = $PoisonLabel
 
@@ -25,15 +26,19 @@ var enemy_textures: Dictionary = {
 	"shadow_mage": "res://assets/art/enemies/shadow_mage.png",
 	"fire_lord": "res://assets/art/enemies/fire_elemental.png",
 	"spire_heart": "res://assets/art/enemies/slime_king.png",
+	"cursed_knight": "res://assets/art/enemies/cursed_knight.png",
+	"frost_wolf": "res://assets/art/enemies/frost_wolf.png",
 }
 
 func _ready() -> void:
 	CombatState.state_updated.connect(_refresh)
 	CombatState.combat_started.connect(_on_combat_start)
+	CombatState.player_turn_started.connect(_on_player_turn_started)
 
 func _on_combat_start() -> void:
 	_load_enemy_sprite()
 	_refresh()
+	_on_player_turn_started()
 
 func _load_enemy_sprite() -> void:
 	if not CombatState.current_enemy_resource:
@@ -97,7 +102,9 @@ func _refresh() -> void:
 	if e_weak:
 		e_weak.text = "虚弱: %d" % CombatState.enemy_weak
 		e_weak.visible = CombatState.enemy_weak > 0
-	
+
+func _on_player_turn_started() -> void:
+	# 仅在玩家回合开始时刷新一次意图，回合中保持不变
 	var intent = CombatState.get_enemy_intent()
 	_refresh_intent(intent)
 
@@ -110,36 +117,40 @@ func _refresh_intent(intent: Dictionary) -> void:
 	
 	match action:
 		"attack":
-			intent_icon.text = "ATK"
-			intent_icon.add_theme_color_override("font_color", Color(1.0, 0.3, 0.3))
+			intent_icon.texture = load("res://assets/art/ui/intents/intent_attack.png")
+			intent_label.text = "攻击"
+			intent_label.add_theme_color_override("font_color", Color(1.0, 0.3, 0.3))
 		"block":
-			intent_icon.text = "DEF"
-			intent_icon.add_theme_color_override("font_color", Color(0.3, 0.8, 1.0))
+			intent_icon.texture = load("res://assets/art/ui/intents/intent_defend.png")
+			intent_label.text = "防御"
+			intent_label.add_theme_color_override("font_color", Color(0.3, 0.8, 1.0))
 		"buff":
 			var buff_name = _buff_type_name(buff_type)
-			if buff_amount > 0:
-				intent_icon.text = "+%d%s" % [buff_amount, buff_name]
-			else:
-				intent_icon.text = "BUF"
-			intent_icon.add_theme_color_override("font_color", Color(0.3, 1.0, 0.3))
+			intent_icon.texture = load("res://assets/art/ui/intents/intent_buff.png")
+			intent_label.text = buff_name
+			intent_label.add_theme_color_override("font_color", Color(0.3, 1.0, 0.3))
 		"debuff":
 			var debuff_name = _buff_type_name(buff_type)
-			if buff_amount > 0:
-				intent_icon.text = "%s%s" % [debuff_name, buff_amount]
-			else:
-				intent_icon.text = "DEB"
-			intent_icon.add_theme_color_override("font_color", Color(0.8, 0.3, 1.0))
+			intent_icon.texture = load("res://assets/art/ui/intents/intent_debuff.png")
+			intent_label.text = debuff_name
+			intent_label.add_theme_color_override("font_color", Color(0.8, 0.3, 1.0))
 		"none":
-			intent_icon.text = "···"
-			intent_icon.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
+			intent_icon.texture = null
+			intent_label.text = ""
+			intent_label.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
 		_:
-			intent_icon.text = "ATK"
-			intent_icon.add_theme_color_override("font_color", Color(1.0, 0.3, 0.3))
+			intent_icon.texture = load("res://assets/art/ui/intents/intent_attack.png")
+			intent_label.text = "攻击"
+			intent_label.add_theme_color_override("font_color", Color(1.0, 0.3, 0.3))
 	
 	if action in ["attack", "block"]:
 		intent_value.text = str(intent.get("value", 0))
 		intent_value.visible = true
+	elif buff_amount > 0:
+		intent_value.text = "+%d" % buff_amount
+		intent_value.visible = true
 	else:
+		intent_value.text = ""
 		intent_value.visible = false
 
 func _buff_type_name(t: String) -> String:

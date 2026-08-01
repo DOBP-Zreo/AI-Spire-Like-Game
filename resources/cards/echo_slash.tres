@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/cards/card_resource.gd" id="1_card"]
+[resource]
+script = ExtResource("1_card")
+id = "echo_slash"
+card_name = "回音斩"
+type = "attack"
+cost = 2
+description = "造成 10 点伤害，抽 1 张牌"
+rarity = "common"
+base_damage = 10
+base_block = 0
+base_draw = 1
+upgraded_damage = 14
+upgraded_block = 0
+upgraded_draw = 1
+special_effect = ""
+keywords = []
+upgraded = false
