@@ -20,7 +20,7 @@ layout_mode = 0
 position = Vector2(25, 4)
 size = Vector2(40, 40)
 expand_mode = 1
-stretch_mode = 5
+stretch_mode = 0
 mouse_filter = 2
 
 [node name="NameLabel" type="Label" parent="."]

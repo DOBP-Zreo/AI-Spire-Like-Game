@@ -39,8 +39,8 @@ func _ready() -> void:
 	info_close.pressed.connect(func(): info_panel.visible = false)
 	
 	# 添加状态栏图标
-	_add_info_icon(260, 24, "res://assets/art/ui/icons/hp_icon.png")
-	_add_info_icon(480, 24, "res://assets/art/ui/icons/gold_icon.png")
+	_add_info_icon(263, 26, "res://assets/art/ui/icons/hp_icon.png")
+	_add_info_icon(483, 26, "res://assets/art/ui/icons/gold_icon.png")
 	
 	# 如果是新游戏，初始化 GameState
 	if GameState.current_floor_map == null:
@@ -67,9 +67,9 @@ func _ready() -> void:
 func _add_info_icon(x: float, y: float, path: String) -> void:
 	var icon = TextureRect.new()
 	icon.position = Vector2(x, y)
-	icon.size = Vector2(24, 24)
+	icon.size = Vector2(18, 18)
 	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	icon.stretch_mode = TextureRect.STRETCH_KEEP_CENTERED
+	icon.stretch_mode = TextureRect.STRETCH_SCALE
 	icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	if ResourceLoader.exists(path): icon.texture = load(path)
 	info_bar.add_child(icon)

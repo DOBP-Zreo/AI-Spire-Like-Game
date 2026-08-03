@@ -20,7 +20,7 @@ position = Vector2(0, 0)
 size = Vector2(1280, 720)
 texture = ExtResource("4_bg")
 expand_mode = 1
-stretch_mode = 5
+stretch_mode = 0
 mouse_filter = 2
 
 ; ── 敌人区域 ──
@@ -43,7 +43,7 @@ layout_mode = 0
 position = Vector2(200, 10)
 size = Vector2(200, 200)
 expand_mode = 1
-stretch_mode = 5
+stretch_mode = 0
 visible = false
 mouse_filter = 2
 
@@ -141,7 +141,7 @@ layout_mode = 0
 position = Vector2(24, 0)
 size = Vector2(32, 32)
 expand_mode = 1
-stretch_mode = 5
+stretch_mode = 0
 mouse_filter = 2
 
 [node name="IntentLabel" type="Label" parent="EnemyArea/IntentArea"]
@@ -184,7 +184,7 @@ layout_mode = 0
 position = Vector2(40, 22)
 size = Vector2(120, 90)
 expand_mode = 1
-stretch_mode = 5
+stretch_mode = 0
 texture = ExtResource("3_warrior")
 mouse_filter = 2
 
@@ -202,7 +202,7 @@ position = Vector2(4, 112)
 size = Vector2(24, 24)
 texture = ExtResource("5_hp")
 expand_mode = 1
-stretch_mode = 5
+stretch_mode = 0
 mouse_filter = 2
 
 [node name="HPText" type="Label" parent="PlayerArea/HPBar"]
@@ -230,7 +230,7 @@ position = Vector2(4, 136)
 size = Vector2(24, 24)
 texture = ExtResource("6_block")
 expand_mode = 1
-stretch_mode = 5
+stretch_mode = 0
 mouse_filter = 2
 
 [node name="EnergyLabel" type="Label" parent="PlayerArea"]
@@ -245,7 +245,7 @@ position = Vector2(4, 158)
 size = Vector2(24, 24)
 texture = ExtResource("7_energy")
 expand_mode = 1
-stretch_mode = 5
+stretch_mode = 0
 mouse_filter = 2
 mouse_filter = 2
 theme_override_font_sizes/font_size = 15

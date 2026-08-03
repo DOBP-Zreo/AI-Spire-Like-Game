@@ -24,8 +24,9 @@ var enemy_textures: Dictionary = {
 	"slime_king": "res://assets/art/enemies/slime_king.png",
 	"dark_knight": "res://assets/art/enemies/dark_knight.png",
 	"shadow_mage": "res://assets/art/enemies/shadow_mage.png",
-	"fire_lord": "res://assets/art/enemies/fire_elemental.png",
-	"spire_heart": "res://assets/art/enemies/slime_king.png",
+	"fire_lord": "res://assets/art/enemies/fire_lord.png",
+	"spire_heart": "res://assets/art/enemies/spire_heart.png",
+	"giant_rat": "res://assets/art/enemies/giant_rat.png",
 	"cursed_knight": "res://assets/art/enemies/cursed_knight.png",
 	"frost_wolf": "res://assets/art/enemies/frost_wolf.png",
 }
